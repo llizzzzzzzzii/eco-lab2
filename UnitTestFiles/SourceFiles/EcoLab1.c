@@ -1,4 +1,4 @@
-﻿/*
+/*
  * <кодировка символов>
  *   Cyrillic (UTF-8 with signature) - Codepage 65001
  * </кодировка символов>
@@ -480,7 +480,7 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
     }
 
     printf("Multiplication test 15 * 10 = %d\n", pIY->pVTbl->Multiplication(pIY, 15, 10));
-    printf("Division test 40 / 8 = %d\n", pIY->pVTbl->Division(pIY, 40, 8));
+    printf("Division test 15 / 10 = %d\n", pIY->pVTbl->Division(pIY, 15, 10));
     pIY->pVTbl->Release(pIY);
 
 	printf("Addition test 15 + 10 = %d\n", pIX->pVTbl->Addition(pIX, 15, 10));
@@ -500,18 +500,6 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
         pIY->pVTbl->Release(pIY);
     }
 
-    result = pIX->pVTbl->QueryInterface(pIX, &IID_IEcoCalculatorX, (void **) &pIX);
-    if (result == 0) {
-        printf("Query IX from IX - success\n");
-        pIX->pVTbl->Release(pIX);
-    }
-
-    result = pIY->pVTbl->QueryInterface(pIY, &IID_IEcoCalculatorY, (void **) &pIY);
-    if (result == 0) {
-        printf("Query IY from IY - success\n");
-        pIY->pVTbl->Release(pIY);
-    }
-
 	result = pIY->pVTbl->QueryInterface(pIY, &IID_IEcoCalculatorX, (void **) &pIX);
     if (result == 0) {
         printf("Query IX from IY - success\n");
@@ -523,6 +511,8 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
         printf("Query IY from IX - success\n");
         pIY->pVTbl->Release(pIY);
     }
+
+
 
     printf("\ntesting time of algorithms, results in file 'output.csv'\n");
 	fopen_s(&resultFile, "output.csv", "w");
