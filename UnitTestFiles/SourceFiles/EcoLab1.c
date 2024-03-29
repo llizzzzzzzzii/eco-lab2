@@ -473,16 +473,18 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
         goto Release;
     }
 
+	 printf("IEcoCalculatorY test:\n");
+	 printf("Multiplication test 15 * 10 = %d\n", pIY->pVTbl->Multiplication(pIY, 15, 10));
+    printf("Division test 15 / 10 = %d\n", pIY->pVTbl->Division(pIY, 15, 10));
+    pIY->pVTbl->Release(pIY);
+
     /* запрос интерфейса IEcoCalculatorX через IEcoLab1 */
     result = pIEcoLab1->pVTbl->QueryInterface(pIEcoLab1, &IID_IEcoCalculatorX, (void **) &pIX);
     if (result != 0 || pIX == 0) {
         goto Release;
     }
 
-    printf("Multiplication test 15 * 10 = %d\n", pIY->pVTbl->Multiplication(pIY, 15, 10));
-    printf("Division test 15 / 10 = %d\n", pIY->pVTbl->Division(pIY, 15, 10));
-    pIY->pVTbl->Release(pIY);
-
+	printf("\nIEcoCalculatorX test:\n");
 	printf("Addition test 15 + 10 = %d\n", pIX->pVTbl->Addition(pIX, 15, 10));
     printf("Subtraction test 15 - 10 = %d\n", pIX->pVTbl->Subtraction(pIX, 15, 10));
     pIX->pVTbl->Release(pIX);
